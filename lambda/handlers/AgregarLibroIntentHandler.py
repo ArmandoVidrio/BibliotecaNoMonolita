@@ -6,9 +6,8 @@ import logging
 import ask_sdk_core.utils as ask_utils
 from database_manager import DatabaseManager  
 from helpers import generar_id_unico, get_random_phrase 
-
-# Frases o constantes que uses
 from constantes import ALGO_MAS, PREGUNTAS_QUE_HACER
+
 class AgregarLibroIntentHandler(AbstractRequestHandler):
     """Handler para agregar libros"""
     def can_handle(self, handler_input):

@@ -33,7 +33,6 @@ from handlers.FallbackIntentHandler import FallbackIntentHandler
 from handlers.SessionEndedRequestHandler import SessionEndedRequestHandler
 from handlers.CatchAllExceptionHandler import CatchAllExceptionHandler
 
-
 # ==============================
 # Registrar handlers - ORDEN CRÍTICO
 # ==============================

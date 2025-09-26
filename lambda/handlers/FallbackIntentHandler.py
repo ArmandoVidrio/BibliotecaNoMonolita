@@ -3,9 +3,9 @@ import ask_sdk_core.utils as ask_utils
 from datetime import datetime
 import random
 
-from helpers.database import DatabaseManager
+from datasources.DataPersistency import DatabaseManager
 from helpers.utils import generar_id_unico, get_random_phrase
-from helpers.frases import ALGO_MAS, PREGUNTAS_QUE_HACER
+from enums import ALGO_MAS, PREGUNTAS_QUE_HACER
 
 class FallbackIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):

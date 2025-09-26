@@ -1,0 +1,47 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title "Skill Alexa - Mi Biblioteca Personal - Componentes (C4 - Nivel 3)"
+
+' Contenedor principal
+Container_Boundary(lambda, "Backend Skill (AWS Lambda)") {
+    
+    ' Componentes - Handlers (entrada desde Alexa)
+    Component(launch_handler, "LaunchRequestHandler", "Intent Handler", "Da la bienvenida, inicializa sesión")
+    Component(agregar_handler, "AgregarLibroIntentHandler", "Intent Handler", "Agrega libros a la biblioteca")
+    Component(listar_handler, "ListarLibrosIntentHandler", "Intent Handler", "Lista libros con paginación y filtros")
+    Component(prestar_handler, "PrestarLibroIntentHandler", "Intent Handler", "Registra préstamos de libros")
+    Component(devolver_handler, "DevolverLibroIntentHandler", "Intent Handler", "Registra devoluciones de libros")
+    Component(consultar_handler, "ConsultarPrestamosIntentHandler", "Intent Handler", "Consulta préstamos activos")
+    Component(historial_handler, "ConsultarDevueltosIntentHandler", "Intent Handler", "Consulta historial de devoluciones")
+    Component(buscar_handler, "BuscarLibroIntentHandler", "Intent Handler", "Busca libros por título o autor")
+
+    ' Otros componentes
+    Component(db_manager, "DatabaseManager", "Data Access", "Gestiona persistencia de datos del usuario")
+    Component(helpers, "Helpers", "Funciones utilitarias", "IDs, búsquedas, sincronización de estados, frases aleatorias")
+    Component(persistence_adapter, "Persistence Adapter", "S3Adapter / FakeS3", "Almacena y recupera datos en S3 o en memoria")
+}
+
+' Relaciones handlers -> lógica/persistencia
+Rel(agregar_handler, db_manager, "Lee/Guarda libros")
+Rel(listar_handler, db_manager, "Lee biblioteca")
+Rel(prestar_handler, db_manager, "Actualiza préstamos")
+Rel(devolver_handler, db_manager, "Actualiza préstamos/historial")
+Rel(consultar_handler, db_manager, "Lee préstamos activos")
+Rel(historial_handler, db_manager, "Lee historial")
+Rel(buscar_handler, db_manager, "Busca en biblioteca")
+Rel(launch_handler, db_manager, "Inicializa datos de usuario")
+
+' Todos los handlers usan helpers
+Rel(agregar_handler, helpers, "Usa funciones de apoyo")
+Rel(listar_handler, helpers, "Usa funciones de apoyo")
+Rel(prestar_handler, helpers, "Usa funciones de apoyo")
+Rel(devolver_handler, helpers, "Usa funciones de apoyo")
+Rel(consultar_handler, helpers, "Usa funciones de apoyo")
+Rel(historial_handler, helpers, "Usa funciones de apoyo")
+Rel(buscar_handler, helpers, "Usa funciones de apoyo")
+
+' DatabaseManager se comunica con persistencia
+Rel(db_manager, persistence_adapter, "Lee/Escribe datos de usuario")
+
+@enduml

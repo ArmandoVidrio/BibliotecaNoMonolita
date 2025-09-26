@@ -1,0 +1,19 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title "Skill Alexa - Mi Biblioteca Personal (Container Diagram)"
+
+Person(usuario, "Usuario", "Persona que interactúa con la skill")
+
+System_Boundary(sistema, "Skill: Mi Biblioteca Personal") {
+    Container(lambda_skill, "AWS Lambda", "Python", "Punto de entrada de la skill, orquesta intents")
+    ContainerDb(s3, "Amazon S3", "Storage", "Almacena libros, préstamos, devoluciones, historial")
+}
+
+System_Ext(alexa, "Servicio de alexa", "Interpreta comandos de voz y envía peticiones")
+
+Rel(usuario, alexa, "Habla con")
+Rel(alexa, lambda_skill, "Envía peticiones", "JSON/HTTPS")
+Rel(lambda_skill, s3, "Persistencia de datos")
+
+@enduml

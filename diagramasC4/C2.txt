@@ -1,0 +1,27 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Skill Alexa - Mi Biblioteca Personal (C4 Nivel 2 - Contenedores)
+
+' Actores
+Person(usuario, "Usuario", "Usa comandos de voz")
+
+' Sistemas externos
+System_Ext(alexa, "Servicio de alexa", "Interpreta la voz y envía peticiones")
+System_Ext(s3, "Amazon S3", "Almacenamiento de la biblioteca")
+System_Ext(dynamodb, "Amazon DynamoDB", "Cache distribuida opcional")
+
+' Sistema principal
+System_Boundary(skill, "Skill: Mi Biblioteca Personal") {
+    Container(backend, "Backend Skill", "AWS Lambda (Python)", "Procesa peticiones y maneja lógica")
+    ContainerDb(cache, "In-memory Cache", "Memoria local", "Cache efímera en la Lambda con TTL")
+}
+
+' Relaciones
+Rel(usuario, alexa, "Habla con", "Voz")
+Rel(alexa, backend, "Envía intents", "JSON/HTTPS")
+Rel(backend, s3, "Lee/Escribe", "S3 API")
+Rel(backend, dynamodb, "Lee/Escribe", "DynamoDB API")
+Rel(backend, cache, "Lee/Actualiza", "Memoria local")
+
+@enduml

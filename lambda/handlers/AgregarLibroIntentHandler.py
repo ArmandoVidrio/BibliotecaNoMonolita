@@ -4,7 +4,7 @@ import ask_sdk_core.utils as ask_utils
 
 from helpers.database import DatabaseManager
 from helpers.utils import generar_id_unico, get_random_phrase
-from helpers.frases import ALGO_MAS, PREGUNTAS_QUE_HACER
+from enums import ALGO_MAS, PREGUNTAS_QUE_HACER
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

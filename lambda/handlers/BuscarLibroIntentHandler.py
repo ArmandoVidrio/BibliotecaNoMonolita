@@ -2,9 +2,9 @@ import logging
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 import ask_sdk_core.utils as ask_utils
 
-from helpers.database import DatabaseManager
+from datasources.DataPersistency import DatabaseManager
 from helpers.utils import get_random_phrase, sincronizar_estados_libros, buscar_libro_por_titulo
-from helpers.frases import ALGO_MAS, PREGUNTAS_QUE_HACER
+from enums import ALGO_MAS, PREGUNTAS_QUE_HACER
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

@@ -31,8 +31,6 @@ from handlers.FallbackIntentHandler import FallbackIntentHandler
 from handlers.SessionEndedRequestHandler import SessionEndedRequestHandler
 from handlers.CatchAllExceptionHandler import CatchAllExceptionHandler
 
-
-
 import boto3
 from botocore.exceptions import ClientError
 

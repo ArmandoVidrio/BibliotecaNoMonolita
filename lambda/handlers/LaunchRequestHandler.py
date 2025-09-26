@@ -1,11 +1,13 @@
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 import ask_sdk_core.utils as ask_utils
-from helpers.utils import get_random_phrase
-from constants import SALUDOS, OPCIONES_MENU, PREGUNTAS_QUE_HACER
-from database import DatabaseManager
-from helpers.sincronizar import sincronizar_estados_libros
+
+from helpers.utils import sincronizar_estados_libros
 from datetime import datetime
 import logging
+
+from datasources.DataPersistency import DatabaseManager
+from constants import SALUDOS, OPCIONES_MENU, PREGUNTAS_QUE_HACER
+from helpers.utils import get_random_phrase
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

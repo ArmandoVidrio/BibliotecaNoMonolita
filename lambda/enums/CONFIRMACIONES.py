@@ -1,0 +1,7 @@
+CONFIRMACIONES = [
+    "¡Perfecto!",
+    "¡Excelente!",
+    "¡Genial!",
+    "¡Muy bien!",
+    "¡Estupendo!"
+]

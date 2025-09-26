@@ -8,7 +8,6 @@ from handlers.ListarLibrosIntentHandler import ListarLibrosIntentHandler
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-
 class SiguientePaginaIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         return ask_utils.is_intent_name("SiguientePaginaIntent")(handler_input)

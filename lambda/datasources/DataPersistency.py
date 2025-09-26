@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from ask_sdk_core.skill_builder import CustomSkillBuilder
 from ask_sdk_s3.adapter import S3Adapter
 
-from configuration.AppConfiguration import USE_FAKE_S3, ENABLE_DDB_CACHE, CACHE_TTL_SECONDS, LIBROS_POR_PAGINA
+from configuration.AppConfiguration import ENABLE_DDB_CACHE, CACHE_TTL_SECONDS
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -145,20 +145,6 @@ class FakeS3Adapter:
             del _FAKE_STORE[uid]
             logger.info(f"FakeS3Adapter: atributos borrados para {uid}")
             
-# ==============================
-# Inicializar persistence adapter
-# ==============================
-if USE_FAKE_S3:
-    persistence_adapter = FakeS3Adapter()
-else:
-    s3_bucket = os.environ.get("S3_PERSISTENCE_BUCKET")
-    if not s3_bucket:
-        raise RuntimeError("S3_PERSISTENCE_BUCKET es requerido cuando USE_FAKE_S3=false")
-    logger.info(f"🪣 Usando S3Adapter con bucket: {s3_bucket}")
-    persistence_adapter = S3Adapter(bucket_name=s3_bucket)
-
-sb = CustomSkillBuilder(persistence_adapter=persistence_adapter)
-
 # ==============================
 # Cache en memoria con TTL
 # ==============================

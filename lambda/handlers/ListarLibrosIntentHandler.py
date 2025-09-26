@@ -4,7 +4,8 @@ from ask_sdk_core.dispatch_components import AbstractRequestHandler
 
 from datasources.DataPersistency import DatabaseManager
 from helpers.utils import get_random_phrase, buscar_libros_por_autor, sincronizar_estados_libros
-from enums import ALGO_MAS, PREGUNTAS_QUE_HACER, LIBROS_POR_PAGINA
+from enums import ALGO_MAS, PREGUNTAS_QUE_HACER
+from configuration.AppConfiguration import LIBROS_POR_PAGINA
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

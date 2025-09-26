@@ -1,11 +1,7 @@
 import os
-import json
 import logging
-import random
-import uuid
 import boto3
 from botocore.exceptions import ClientError
-from datetime import datetime, timedelta
 
 import ask_sdk_core.utils as ask_utils
 from ask_sdk_core.skill_builder import CustomSkillBuilder
@@ -32,6 +28,26 @@ from handlers.CancelOrStopIntentHandler import CancelOrStopIntentHandler
 from handlers.FallbackIntentHandler import FallbackIntentHandler
 from handlers.SessionEndedRequestHandler import SessionEndedRequestHandler
 from handlers.CatchAllExceptionHandler import CatchAllExceptionHandler
+
+from configuration.AppConfiguration import USE_FAKE_S3
+from datasources.DataPersistency import FakeS3Adapter
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# ==============================
+# Inicializar persistence adapter
+# ==============================
+if USE_FAKE_S3:
+    persistence_adapter = FakeS3Adapter()
+else:
+    s3_bucket = os.environ.get("S3_PERSISTENCE_BUCKET")
+    if not s3_bucket:
+        raise RuntimeError("S3_PERSISTENCE_BUCKET es requerido cuando USE_FAKE_S3=false")
+    logger.info(f"🪣 Usando S3Adapter con bucket: {s3_bucket}")
+    persistence_adapter = S3Adapter(bucket_name=s3_bucket)
+
+sb = CustomSkillBuilder(persistence_adapter=persistence_adapter)
 
 # ==============================
 # Registrar handlers - ORDEN CRÍTICO

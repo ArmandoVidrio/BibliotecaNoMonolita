@@ -5,11 +5,10 @@ from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from helpers.utils import get_random_phrase, sincronizar_estados_libros
 from enums import ALGO_MAS, PREGUNTAS_QUE_HACER
 from datasources.DataPersistency import DatabaseManager
+from datasources.DataPersistency import _CACHE
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-
-from database import _CACHE
 
 class LimpiarCacheIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):

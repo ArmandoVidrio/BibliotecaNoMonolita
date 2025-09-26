@@ -5,6 +5,9 @@ from helpers.database import DatabaseManager
 from helpers.utils import get_random_phrase, sincronizar_estados_libros, buscar_libro_por_titulo
 from helpers.frases import ALGO_MAS, PREGUNTAS_QUE_HACER
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
 class BuscarLibroIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         return ask_utils.is_intent_name("BuscarLibroIntent")(handler_input)

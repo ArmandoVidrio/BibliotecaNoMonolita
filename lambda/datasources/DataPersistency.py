@@ -2,9 +2,10 @@ import os
 import boto3
 import logging
 from datetime import datetime, timedelta
-
 from ask_sdk_core.skill_builder import CustomSkillBuilder
 from ask_sdk_s3.adapter import S3Adapter
+
+from configuration.AppConfiguration import USE_FAKE_S3, ENABLE_DDB_CACHE, CACHE_TTL_SECONDS, LIBROS_POR_PAGINA
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

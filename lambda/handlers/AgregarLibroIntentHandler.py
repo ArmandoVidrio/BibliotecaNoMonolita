@@ -2,7 +2,7 @@ from datetime import datetime
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 import ask_sdk_core.utils as ask_utils
 
-from helpers.database import DatabaseManager
+from datasources.DataPersistency import DatabaseManager
 from helpers.utils import generar_id_unico, get_random_phrase
 from enums import ALGO_MAS, PREGUNTAS_QUE_HACER
 

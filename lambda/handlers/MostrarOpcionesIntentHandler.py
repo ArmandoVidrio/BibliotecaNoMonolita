@@ -1,9 +1,11 @@
-from ask_sdk_core.dispatch_components import AbstractRequestHandler
 import ask_sdk_core.utils as ask_utils
-from database import DatabaseManager
-from helpers.utils import get_random_phrase
-from constants import OPCIONES_MENU, PREGUNTAS_QUE_HACER
 import logging
+
+from ask_sdk_core.dispatch_components import AbstractRequestHandler
+
+from datasources.DataPersistency import DatabaseManager
+from helpers.utils import get_random_phrase
+from enums import OPCIONES_MENU, PREGUNTAS_QUE_HACER
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

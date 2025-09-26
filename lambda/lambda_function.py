@@ -12,6 +12,27 @@ from ask_sdk_model import Response, DialogState
 from ask_sdk_model.dialog import ElicitSlotDirective, DelegateDirective
 from ask_sdk_s3.adapter import S3Adapter
 
+from handlers.LaunchRequestHandler import LaunchRequestHandler
+from handlers.MostrarOpcionesIntentHandler import MostrarOpcionesIntentHandler
+from handlers.ContinuarAgregarHandler import ContinuarAgregarHandler
+from handlers.AgregarLibroIntentHandler import AgregarLibroIntentHandler
+from handlers.ListarLibrosIntentHandler import ListarLibrosIntentHandler
+from handlers.BuscarLibroIntentHandler import BuscarLibroIntentHandler
+from handlers.PrestarLibroIntentHandler import PrestarLibroIntentHandler
+from handlers.DevolverLibroIntentHandler import DevolverLibroIntentHandler
+from handlers.ConsultarPrestamosIntentHandler import ConsultarPrestamosIntentHandler
+from handlers.ConsultarDevueltosIntentHandler import ConsultarDevueltosIntentHandler
+from handlers.LimpiarCacheIntentHandler import LimpiarCacheIntentHandler
+from handlers.SiguientePaginaIntentHandler import SiguientePaginaIntentHandler
+from handlers.SalirListadoIntentHandler import SalirListadoIntentHandler
+from handlers.HelpIntentHandler import HelpIntentHandler
+from handlers.CancelOrStopIntentHandler import CancelOrStopIntentHandler
+from handlers.FallbackIntentHandler import FallbackIntentHandler
+from handlers.SessionEndedRequestHandler import SessionEndedRequestHandler
+from handlers.CatchAllExceptionHandler import CatchAllExceptionHandler
+
+
+
 import boto3
 from botocore.exceptions import ClientError
 

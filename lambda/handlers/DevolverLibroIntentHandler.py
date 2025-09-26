@@ -4,9 +4,9 @@ from ask_sdk_core.dispatch_components import AbstractRequestHandler
 import ask_sdk_core.utils as ask_utils
 import random
 
-from helpers.database import DatabaseManager
+from datasources.DataPersistency import DatabaseManager
 from helpers.utils import get_random_phrase
-from helpers.frases import ALGO_MAS, PREGUNTAS_QUE_HACER, CONFIRMACIONES
+from enums import ALGO_MAS, PREGUNTAS_QUE_HACER, CONFIRMACIONES
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

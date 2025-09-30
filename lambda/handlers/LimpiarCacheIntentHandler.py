@@ -4,7 +4,7 @@ from ask_sdk_core.dispatch_components import AbstractRequestHandler
 
 from utility.utils import get_random_phrase, sincronizar_estados_libros
 from constants.constants import ALGO_MAS, PREGUNTAS_QUE_HACER
-from database.database import DatabaseManager, _CACHE
+from database.database import DatabaseManager
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -15,12 +15,8 @@ class LimpiarCacheIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         try:
-            user_id = DatabaseManager._user_id(handler_input)
-            
-            # Limpiar cache en memoria
-            global _CACHE
-            if user_id in _CACHE:
-                del _CACHE[user_id]
+            # Limpiar cache en memoria (a través del manager)
+            DatabaseManager.clear_cache_for_user(handler_input)
             
             # Limpiar sesión
             handler_input.attributes_manager.session_attributes = {}

@@ -15,11 +15,9 @@ from ask_sdk_s3.adapter import S3Adapter
 import boto3
 from botocore.exceptions import ClientError
 
-from database.database import DatabaseManager, FakeS3Adapter
-from constants.constants import CONFIRMACIONES
+from database.database import FakeS3Adapter
 from configuration.configurations import USE_FAKE_S3
 
-# Importar clases de handlers directamente
 from handlers.LaunchRequestHandler import LaunchRequestHandler
 from handlers.AgregarLibroIntentHandler import AgregarLibroIntentHandler
 from handlers.MostrarOpcionesIntentHandler import MostrarOpcionesIntentHandler
@@ -38,9 +36,7 @@ from handlers.BuscarLibroIntentHandler import BuscarLibroIntentHandler
 from handlers.DevolverLibroIntentHandler import DevolverLibroIntentHandler
 from handlers.ConsultarPrestamosIntentHandler import ConsultarPrestamosIntentHandler
 from handlers.ConsultarDevueltosIntentHandler import ConsultarDevueltosIntentHandler
-
-import boto3
-from botocore.exceptions import ClientError
+from handlers.EliminarLibroIntentHandler import EliminarLibroIntentHandler
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -70,6 +66,7 @@ sb.add_request_handler(ContinuarAgregarHandler())
 
 # Luego AgregarLibroIntentHandler
 sb.add_request_handler(AgregarLibroIntentHandler())
+sb.add_request_handler(EliminarLibroIntentHandler())
 
 # Luego los demás handlers
 sb.add_request_handler(ListarLibrosIntentHandler())

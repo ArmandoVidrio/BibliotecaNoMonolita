@@ -1,8 +1,7 @@
 import logging
 from datetime import datetime
-from ask_sdk_core.dispatch_components import AbstractRequestHandler
 import ask_sdk_core.utils as ask_utils
-
+from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from database.database import DatabaseManager
 from utility.utils import get_random_phrase, generar_id_unico
 from constants.constants import PREGUNTAS_QUE_HACER, ALGO_MAS
@@ -11,7 +10,6 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 class AgregarLibroIntentHandler(AbstractRequestHandler):
-    """Handler para agregar libros"""
     def can_handle(self, handler_input):
         return ask_utils.is_intent_name("AgregarLibroIntent")(handler_input)
 

@@ -1,8 +1,8 @@
 import ask_sdk_core.utils as ask_utils
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 
-from helpers.utils import get_random_phrase
-from enums import ALGO_MAS, PREGUNTAS_QUE_HACER
+from utility.utils import get_random_phrase
+from constants.constants import ALGO_MAS, PREGUNTAS_QUE_HACER
 
 class SalirListadoIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):

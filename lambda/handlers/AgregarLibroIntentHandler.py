@@ -3,9 +3,9 @@ from datetime import datetime
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 import ask_sdk_core.utils as ask_utils
 
-from datasources.DataPersistency import DatabaseManager
-from helpers.utils import generar_id_unico, get_random_phrase
-from enums import ALGO_MAS, PREGUNTAS_QUE_HACER
+from database.database import DatabaseManager
+from utility.utils import get_random_phrase, generar_id_unico
+from constants.constants import PREGUNTAS_QUE_HACER, ALGO_MAS
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

@@ -3,9 +3,9 @@ import ask_sdk_core.utils as ask_utils
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from datetime import datetime
 
-from datasources.DataPersistency import DatabaseManager
-from enums import SALUDOS, OPCIONES_MENU, PREGUNTAS_QUE_HACER
-from helpers.utils import get_random_phrase, sincronizar_estados_libros
+from database.database import DatabaseManager
+from constants.constants import SALUDOS, OPCIONES_MENU, PREGUNTAS_QUE_HACER
+from utility.utils import get_random_phrase, sincronizar_estados_libros
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

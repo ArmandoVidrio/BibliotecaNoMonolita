@@ -1,7 +1,9 @@
 import os
+import json
 import logging
-import boto3
-from botocore.exceptions import ClientError
+from datetime import datetime, timedelta
+import random
+import uuid
 
 import ask_sdk_core.utils as ask_utils
 from ask_sdk_core.skill_builder import CustomSkillBuilder
@@ -10,16 +12,20 @@ from ask_sdk_model import Response, DialogState
 from ask_sdk_model.dialog import ElicitSlotDirective, DelegateDirective
 from ask_sdk_s3.adapter import S3Adapter
 
+import boto3
+from botocore.exceptions import ClientError
+
+from database.database import DatabaseManager, FakeS3Adapter
+from constants.constants import CONFIRMACIONES
+from configuration.configurations import USE_FAKE_S3
+
+# Importar clases de handlers directamente
 from handlers.LaunchRequestHandler import LaunchRequestHandler
+from handlers.AgregarLibroIntentHandler import AgregarLibroIntentHandler
 from handlers.MostrarOpcionesIntentHandler import MostrarOpcionesIntentHandler
 from handlers.ContinuarAgregarHandler import ContinuarAgregarHandler
-from handlers.AgregarLibroIntentHandler import AgregarLibroIntentHandler
 from handlers.ListarLibrosIntentHandler import ListarLibrosIntentHandler
-from handlers.BuscarLibroIntentHandler import BuscarLibroIntentHandler
 from handlers.PrestarLibroIntentHandler import PrestarLibroIntentHandler
-from handlers.DevolverLibroIntentHandler import DevolverLibroIntentHandler
-from handlers.ConsultarPrestamosIntentHandler import ConsultarPrestamosIntentHandler
-from handlers.ConsultarDevueltosIntentHandler import ConsultarDevueltosIntentHandler
 from handlers.LimpiarCacheIntentHandler import LimpiarCacheIntentHandler
 from handlers.SiguientePaginaIntentHandler import SiguientePaginaIntentHandler
 from handlers.SalirListadoIntentHandler import SalirListadoIntentHandler
@@ -28,9 +34,13 @@ from handlers.CancelOrStopIntentHandler import CancelOrStopIntentHandler
 from handlers.FallbackIntentHandler import FallbackIntentHandler
 from handlers.SessionEndedRequestHandler import SessionEndedRequestHandler
 from handlers.CatchAllExceptionHandler import CatchAllExceptionHandler
+from handlers.BuscarLibroIntentHandler import BuscarLibroIntentHandler
+from handlers.DevolverLibroIntentHandler import DevolverLibroIntentHandler
+from handlers.ConsultarPrestamosIntentHandler import ConsultarPrestamosIntentHandler
+from handlers.ConsultarDevueltosIntentHandler import ConsultarDevueltosIntentHandler
 
-from configuration.AppConfiguration import USE_FAKE_S3
-from datasources.DataPersistency import FakeS3Adapter
+import boto3
+from botocore.exceptions import ClientError
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -75,6 +85,9 @@ sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
+
+# Exception handler
 sb.add_exception_handler(CatchAllExceptionHandler())
 
+# Lambda handler
 lambda_handler = sb.lambda_handler()

@@ -2,10 +2,9 @@ import ask_sdk_core.utils as ask_utils
 import logging
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 
-from helpers.utils import get_random_phrase, sincronizar_estados_libros
-from enums import ALGO_MAS, PREGUNTAS_QUE_HACER
-from datasources.DataPersistency import DatabaseManager
-from datasources.DataPersistency import _CACHE
+from utility.utils import get_random_phrase, sincronizar_estados_libros
+from constants.constants import ALGO_MAS, PREGUNTAS_QUE_HACER
+from database.database import DatabaseManager, _CACHE
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

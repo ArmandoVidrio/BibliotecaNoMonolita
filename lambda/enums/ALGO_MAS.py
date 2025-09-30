@@ -1,7 +1,0 @@
-ALGO_MAS = [
-    "¿Hay algo más en lo que pueda ayudarte?",
-    "¿Necesitas algo más?",
-    "¿Qué más puedo hacer por ti?",
-    "¿Te ayudo con algo más?",
-    "¿Hay algo más que quieras hacer?"
-]

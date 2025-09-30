@@ -4,9 +4,9 @@ import random
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from datetime import datetime, timedelta
 
-from datasources.DataPersistency import DatabaseManager
-from helpers.utils import get_random_phrase, generar_id_unico, generar_id_prestamo, buscar_libro_por_titulo_exacto, sincronizar_estados_libros
-from enums import CONFIRMACIONES, ALGO_MAS, PREGUNTAS_QUE_HACER
+from database.database import DatabaseManager
+from utility.utils import get_random_phrase, generar_id_unico, generar_id_prestamo, buscar_libro_por_titulo_exacto, sincronizar_estados_libros
+from constants.constants import CONFIRMACIONES, ALGO_MAS, PREGUNTAS_QUE_HACER
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
